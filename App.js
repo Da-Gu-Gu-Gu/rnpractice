@@ -14,6 +14,9 @@ import TabScreentwo from './screens/TabScreentwo';
 import TabScreenThree from './screens/TabScreenThree';
 import TabScreenFour from './screens/TabScreenFour';
 import FavoirtesContextProvider from './store/context/favorites-context';
+import { Provider } from 'react-redux';
+import {store} from './store/redux/store'
+
 
 const Stack=createNativeStackNavigator()
 const Drawer=createDrawerNavigator()
@@ -97,8 +100,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style='light'/>
-      <FavoirtesContextProvider >
-            <NavigationContainer>
+      {/* <FavoirtesContextProvider > */}
+        <Provider store={store}>
+
+          <NavigationContainer>
                 <Stack.Navigator initialRouteName='MealCategories'
               screenOptions={{
                 headerStyle:{
@@ -129,7 +134,9 @@ export default function App() {
               />
                 </Stack.Navigator>
             </NavigationContainer>
-      </FavoirtesContextProvider>
+       
+            </Provider>
+      {/* </FavoirtesContextProvider> */}
     </View>
   );
 }
